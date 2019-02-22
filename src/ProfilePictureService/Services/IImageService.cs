@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace ProfilePictureService.Services
 {
-    public class IImageService
+    interface IImageService
     {
+        Task<byte[]> GetImage(string fileName);
+        Task<string> GetImageAsBase64(string fileName);
+        Task StoreImage(string fileName, byte[] image);
+        Task<bool> RemoveImage(string fileName);
     }
 }
