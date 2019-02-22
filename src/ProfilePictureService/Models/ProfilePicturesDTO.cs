@@ -10,6 +10,6 @@ namespace ProfilePictureService.Models
         /// <summary>
         /// Key/value pairs of user names and profile pictures (encoded as base 64 strings)
         /// </summary>
-        public Dictionary<string, string> UserProfilePictures { get; set; }
+        public Dictionary<string, string> UserProfilePictures { get; }
     }
 }
