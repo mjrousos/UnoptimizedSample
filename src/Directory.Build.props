@@ -1,0 +1,12 @@
+<Project>
+  <PropertyGroup>
+    <!-- Common properties -->
+    <LangVersion>latest</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+
+    <!-- Configure output path -->
+    <BaseArtifactPath>$(MSBuildThisFileDirectory)/../out</BaseArtifactPath>
+    <BaseOutputPath>$(BaseArtifactPath)/$(MSBuildProjectName)</BaseOutputPath>
+  </PropertyGroup>
+</Project>
