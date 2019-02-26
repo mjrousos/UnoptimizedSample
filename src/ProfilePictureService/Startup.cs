@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace ProfilePictureService
@@ -32,6 +33,11 @@ namespace ProfilePictureService
                 c.SwaggerDoc("v1", new Info { Title = "Profile Picture API", Version = "v1" });
                 c.IncludeXmlComments(Path.ChangeExtension(typeof(Startup).Assembly.Location, "xml"));
             });
+
+            services.AddProfilePictureRepositories(Configuration);
+            services.AddHealthChecks()
+                .AddProfilePictureRepositoryHeathChecks(services);
+            services.AddHealthChecksUI();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +47,11 @@ namespace ProfilePictureService
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseHealthChecks("/health", new HealthCheckOptions
+            {
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+            });
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
