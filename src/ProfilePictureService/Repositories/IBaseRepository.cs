@@ -4,8 +4,8 @@ namespace ProfilePictureService.Repositories
 {
     interface IBaseRepository<T>
     {
-        Task<T> Get(string name);
-        Task Set(string name, T data);
-        Task<bool> Delete(string name);
+        Task<T> GetAsync(string name);
+        Task SetAsync(string name, T data);
+        Task<bool> DeleteAsync(string name);
     }
 }

@@ -4,9 +4,9 @@ namespace ProfilePictureService.Services
 {
     interface IImageService
     {
-        Task<byte[]> GetImage(string fileName);
-        Task<string> GetImageAsBase64(string fileName);
-        Task StoreImage(string fileName, byte[] image);
-        Task<bool> RemoveImage(string fileName);
+        Task<byte[]> GetImageAsync(string fileName);
+        Task<string> GetImageAsBase64Async(string fileName);
+        Task StoreImageAsync(string fileName, byte[] image);
+        Task<bool> RemoveImageAsync(string fileName);
     }
 }
