@@ -24,38 +24,6 @@ namespace ProfilePictureService.Controllers
             _imageService = imageService;
         }
 
-        // GET api/pictures/search
-        /// <summary>
-        /// Initiates a new profile picture search for user IDs provided in the query string
-        /// </summary>
-        /// <param name="userIds">User IDs to retrieve profile pictures for</param>
-        /// <returns>A profile picture collection object containing the requested users' profile pictures</returns>
-        [HttpGet("search")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Dictionary<string, string>>> Search([FromQuery(Name = "userId")] IEnumerable<string> userIds)
-        {
-            if (userIds == null)
-            {
-                return BadRequest();
-            }
-
-            var pictures = new Dictionary<string, string>();
-
-            foreach (var userId in userIds
-                                    .Where(s => !string.IsNullOrEmpty(s))
-                                    .Distinct())
-            {
-                var picture = await _imageService.GetImageAsBase64Async(userId).ConfigureAwait(false);
-                if (picture != null)
-                {
-                    pictures.Add(userId, picture);
-                }
-            }
-
-            return Ok(pictures);
-        }
-
         // POST api/pictures/{userId}
         /// <summary>
         /// Adds or updates a user's profile picture
