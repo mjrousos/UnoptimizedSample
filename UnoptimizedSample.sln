@@ -13,8 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProfilePictureService.Tests
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E976ED1F-896C-4A5E-9F53-CB90057F229B}"
 	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfilePictureService.LoadTests", "test\ProfilePictureService.LoadTests\ProfilePictureService.LoadTests.csproj", "{5942FCFE-E568-422C-B4E6-64AD1D858E50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +53,18 @@ Global
 		{9C9DA1C1-60B3-4D1F-9E0D-A64ABCE3AAFE}.Release|x64.Build.0 = Release|Any CPU
 		{9C9DA1C1-60B3-4D1F-9E0D-A64ABCE3AAFE}.Release|x86.ActiveCfg = Release|Any CPU
 		{9C9DA1C1-60B3-4D1F-9E0D-A64ABCE3AAFE}.Release|x86.Build.0 = Release|Any CPU
+		{5942FCFE-E568-422C-B4E6-64AD1D858E50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5942FCFE-E568-422C-B4E6-64AD1D858E50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5942FCFE-E568-422C-B4E6-64AD1D858E50}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5942FCFE-E568-422C-B4E6-64AD1D858E50}.Debug|x64.Build.0 = Debug|Any CPU
+		{5942FCFE-E568-422C-B4E6-64AD1D858E50}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5942FCFE-E568-422C-B4E6-64AD1D858E50}.Debug|x86.Build.0 = Debug|Any CPU
+		{5942FCFE-E568-422C-B4E6-64AD1D858E50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5942FCFE-E568-422C-B4E6-64AD1D858E50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5942FCFE-E568-422C-B4E6-64AD1D858E50}.Release|x64.ActiveCfg = Release|Any CPU
+		{5942FCFE-E568-422C-B4E6-64AD1D858E50}.Release|x64.Build.0 = Release|Any CPU
+		{5942FCFE-E568-422C-B4E6-64AD1D858E50}.Release|x86.ActiveCfg = Release|Any CPU
+		{5942FCFE-E568-422C-B4E6-64AD1D858E50}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +72,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D54F35CF-8C7A-4989-B842-8B2EA68D2B58} = {E02CB1A1-5ED7-42FC-898F-7DA80EABCF4C}
 		{9C9DA1C1-60B3-4D1F-9E0D-A64ABCE3AAFE} = {651400B8-BD17-4235-A4F0-E5AD0D6CC0C6}
+		{5942FCFE-E568-422C-B4E6-64AD1D858E50} = {651400B8-BD17-4235-A4F0-E5AD0D6CC0C6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {746ED4C0-644B-406A-8457-EF423E39D34B}
