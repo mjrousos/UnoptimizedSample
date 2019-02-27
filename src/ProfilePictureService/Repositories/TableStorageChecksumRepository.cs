@@ -37,7 +37,7 @@ namespace ProfilePictureService.Repositories
         public async Task<string> GetAsync(string name)
         {
             var table = await GetTable().ConfigureAwait(false);
-            var result = await table.ExecuteAsync(TableOperation.Retrieve<ChecksumEntity>(string.Empty, name)).ConfigureAwait(false);
+            var result = await table.ExecuteAsync(TableOperation.Retrieve<ChecksumEntity>(string.Empty, NormalizeName(name))).ConfigureAwait(false);
 
             return (result.Result as ChecksumEntity)?.Data;
         }
@@ -67,5 +67,20 @@ namespace ProfilePictureService.Repositories
             }
         }
 
+        #region Hacky Demo Enablement Code
+        const string TestUserName = "1";
+        const int MaxUsers = 50000;
+        private static string NormalizeName(string name)
+        {
+            // This method is a hack to minimize the amount of 'fake' Azure storage I need
+            // for this scenario! Please assume that in production this would be a no-op
+            if (int.TryParse(name, out var nameAsInt) && 0 < nameAsInt && nameAsInt < MaxUsers)
+            {
+                return TestUserName;
+            }
+
+            return name;
+        }
+        #endregion
     }
 }

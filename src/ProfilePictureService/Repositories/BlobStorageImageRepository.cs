@@ -61,6 +61,8 @@ namespace ProfilePictureService.Repositories
                 throw new ArgumentException("Blob name required", nameof(name));
             }
 
+            name = NormalizeName(name);
+
             var container = await GetBlobContainer().ConfigureAwait(false);
             var blob = container.GetBlockBlobReference(name);
             if (!await blob.ExistsAsync().ConfigureAwait(false))
@@ -91,5 +93,21 @@ namespace ProfilePictureService.Repositories
             var blob = container.GetBlockBlobReference(name);
             await blob.UploadFromByteArrayAsync(data, 0, data.Length).ConfigureAwait(false);
         }
+
+        #region Hacky Demo Enablement Code
+        const string TestUserName = "1";
+        const int MaxUsers = 50000;
+        private static string NormalizeName(string name)
+        {
+            // This method is a hack to minimize the amount of 'fake' Azure storage I need
+            // for this scenario! Please assume that in production this would be a no-op
+            if (int.TryParse(name, out var nameAsInt) && 0 < nameAsInt && nameAsInt < MaxUsers)
+            {
+                return TestUserName;
+            }
+
+            return name;
+        }
+        #endregion
     }
 }
