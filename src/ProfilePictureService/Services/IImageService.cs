@@ -2,7 +2,7 @@
 
 namespace ProfilePictureService.Services
 {
-    interface IImageService
+    public interface IImageService
     {
         Task<byte[]> GetImageAsync(string fileName);
         Task<string> GetImageAsBase64Async(string fileName);

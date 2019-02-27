@@ -1,9 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using ProfilePictureService.Repositories;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProfilePictureService.Services
@@ -26,7 +23,8 @@ namespace ProfilePictureService.Services
         public async Task<string> GetImageAsBase64Async(string fileName)
         {
             var data = await GetImageAsync(fileName).ConfigureAwait(false);
-            return Convert.ToBase64String(data);
+            return data == null ? null : 
+               $"data:image/jpeg;base64,{Convert.ToBase64String(data)}";
         }
 
         public async Task<byte[]> GetImageAsync(string fileName)
@@ -39,14 +37,14 @@ namespace ProfilePictureService.Services
             var image = await _imageRepository.GetAsync(fileName).ConfigureAwait(false);
             if ((image?.Length ?? 0) == 0)
             {
-                throw new FileNotFoundException("Invalid file name", fileName);
+                return null;
             }
 
             var checkSum = await _checksumRepository.GetAsync(fileName).ConfigureAwait(false);
             if (string.IsNullOrEmpty(checkSum) ||
-                checkSum.Equals(_hashingService.CalculateChecksum(image), StringComparison.Ordinal))
+                !checkSum.Equals(_hashingService.CalculateChecksum(image), StringComparison.Ordinal))
             {
-                throw new InvalidOperationException($"Invalid checksum for file {fileName}");
+                return null;
             }
 
             return image;
