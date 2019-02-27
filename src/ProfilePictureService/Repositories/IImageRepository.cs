@@ -1,4 +1,4 @@
 ﻿namespace ProfilePictureService.Repositories
 {
-    interface IImageRepository:IBaseRepository<byte[]> { }
+    public interface IImageRepository:IBaseRepository<byte[]> { }
 }

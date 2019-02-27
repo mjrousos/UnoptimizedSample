@@ -2,7 +2,7 @@
 
 namespace ProfilePictureService.Repositories
 {
-    interface IBaseRepository<T>
+    public interface IBaseRepository<T>
     {
         Task<T> GetAsync(string name);
         Task SetAsync(string name, T data);

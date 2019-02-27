@@ -1,5 +1,5 @@
 ﻿namespace ProfilePictureService.Repositories
 {
-    interface IChecksumRepository : IBaseRepository<string>
+    public interface IChecksumRepository : IBaseRepository<string>
     { }
 }

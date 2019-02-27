@@ -19,7 +19,7 @@ namespace ProfilePictureService.Controllers
         /// <param name="userIds">User IDs to retrieve profile pictures for</param>
         /// <returns>A profile picture collection object containing the requested users' profile pictures</returns>
         [HttpGet("search")]
-        public Task<ActionResult<ProfilePicturesDTO>> StartSearch([FromQuery(Name = "userId")] IEnumerable<string> userIds)
+        public Task<ActionResult<ProfilePicturesDTO>> Search([FromQuery(Name = "userId")] IEnumerable<string> userIds)
         {
             throw new NotImplementedException();
         }
