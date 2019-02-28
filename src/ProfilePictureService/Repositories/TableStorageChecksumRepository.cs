@@ -27,11 +27,11 @@ namespace ProfilePictureService.Repositories
             return _tableReference;
         }
 
-        public TableStorageChecksumRepository(ILogger<TableStorageChecksumRepository> logger, IOptions<AzureStorageOptions> options)
+        public TableStorageChecksumRepository(ILogger<TableStorageChecksumRepository> logger, IOptions<StorageOptions> options)
         {
             Logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            var azureOptions = options?.Value ?? throw new ArgumentNullException(nameof(options));
-            _tableReference = CloudStorageAccount.Parse(azureOptions.StorageConnectionString).CreateCloudTableClient().GetTableReference(azureOptions.TableName);
+            var storageOptions = options?.Value ?? throw new ArgumentNullException(nameof(options));
+            _tableReference = CloudStorageAccount.Parse(storageOptions.ChecksumStorageConnectionString).CreateCloudTableClient().GetTableReference(storageOptions.ChecksumContainerName);
         }
 
         public async Task<string> GetAsync(string name)

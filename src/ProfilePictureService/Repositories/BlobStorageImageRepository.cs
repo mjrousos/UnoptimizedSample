@@ -13,8 +13,7 @@ namespace ProfilePictureService.Repositories
     {
         private bool _blobContainerInitialized;
         private readonly CloudBlobContainer _blobContainer;
-
-        private ILogger<BlobStorageImageRepository> Logger { get; }
+        private readonly ILogger<BlobStorageImageRepository> _logger;
 
         private async Task<CloudBlobContainer> GetBlobContainer()
         {
@@ -35,11 +34,11 @@ namespace ProfilePictureService.Repositories
             return _blobContainer;
         }
 
-        public BlobStorageImageRepository(ILogger<BlobStorageImageRepository> logger, IOptions<AzureStorageOptions> options)
+        public BlobStorageImageRepository(ILogger<BlobStorageImageRepository> logger, IOptions<StorageOptions> options)
         {
-            Logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            var azureOptions = options?.Value ?? throw new ArgumentNullException(nameof(options));
-            _blobContainer = CloudStorageAccount.Parse(azureOptions.StorageConnectionString).CreateCloudBlobClient().GetContainerReference(azureOptions.BlobContainerName);
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            var storageOptions = options?.Value ?? throw new ArgumentNullException(nameof(options));
+            _blobContainer = CloudStorageAccount.Parse(storageOptions.ImageStorageConnectionString).CreateCloudBlobClient().GetContainerReference(storageOptions.ImageContainerName);
         }
 
         public async Task<bool> DeleteAsync(string name)
